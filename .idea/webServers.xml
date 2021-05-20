@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="7d92365e-763f-4929-9797-c7c2fb0af0c3" name="impfservice21" url="http://corana-impfservice21.s1810456014.student.kwmhgb.at">
+        <fileTransfer host="s1810456014.student.kwmhgb.at" port="222" rootFolder="/usr/home/sstud474/public_html/corana-impfservice21/bookstoreServer" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="222" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
