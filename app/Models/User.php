@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
 
@@ -18,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'svnr', 'gender', 'firstname', 'lastname', 'street', 'number', 'birth', 'phonenumber', 'email', 'password', 'vaccination'
+        'svnr', 'gender', 'firstname', 'lastname', 'street', 'number', 'birth', 'phonenumber', 'email', 'password', 'hasvaccination', 'isadmin', 'vaccination_id'
     ];
 
 
@@ -40,9 +41,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    //Vaccination has many users, user has 1 vaccination: BelongsTo
+    //one user BELONGSTO ONE VACCINATION
     public function vaccination():BelongsTo{
      return $this->belongsTo(Vaccination::class);
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        // TODO: Implement getJWTCustomClaims() method.
+        return ['user'=>['id' => $this->id]];
     }
 
 }

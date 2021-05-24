@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Models\Vaccination;
+use App\Http\Controllers\VaccinationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,16 +16,15 @@ use App\Models\Vaccination;
 |
 */
 
-Route::get('/', function () {
-    $vaccinations = DB::table('vaccinations')->get();
-    return view('welcome', compact('vaccinations'));
-});
-Route::get('/vaccinations', function () {
-    $vaccinations = Vaccination::all();
-    return view('vaccinations.index', compact('vaccinations'));
-});
+Route::get('/', [VaccinationController::class, 'index']);
+    //$vaccinations = DB::table('vaccinations')->get();
+    //return view('welcome', compact('vaccinations'));
 
-Route::get('/vaccinations/{id}', function ($id) {
-    $vaccination = Vaccination::find($id);
-    return view('vaccinations.show', compact('vaccination'));
-});
+Route::get('/vaccinations', [VaccinationController::class, 'index']);
+   // $vaccinations = Vaccination::all();
+   // return view('vaccinations.index', compact('vaccinations'));
+
+Route::get('/vaccinations/{id}', [VaccinationController::class, 'show']);
+   // $vaccination = Vaccination::find($id);
+   // return view('vaccinations.show', compact('vaccination'));
+

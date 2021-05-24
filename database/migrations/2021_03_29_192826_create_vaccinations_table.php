@@ -14,10 +14,12 @@ class CreateVaccinationsTable extends Migration
     public function up()
     {
         Schema::create('vaccinations', function (Blueprint $table) {
-            $table->id(); //Primary Key
-            $table->date('date');
-            $table->time('time');
-            $table->integer('max_participants');
+            $table->id();
+            $table->integer('max_participants')->default('10');;
+            $table->date('date')->default("2021-05-10");
+            $table->time('time')->default('10:05:10');
+            //$table->bigInteger('location_id')->unsigned();
+            $table->foreignId('location_id')->references('id')->on('locations')->onDelete('cascade');
             $table->timestamps();
         });
     }

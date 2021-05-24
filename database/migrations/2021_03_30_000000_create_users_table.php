@@ -26,15 +26,16 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->rememberToken();
             $table->boolean('hasvaccination')->default(false); //true = geimpft //false = nicht geimpft
+            $table->boolean('isadmin')->default(false); //true = admin //false = no admin
             /**VARIANTE 1
               $table->bigInteger('vaccination_id')->unsigned();
               $table->foreign('vaccination_id')->references('id')->on('vaccinations')->onDelete('cascade');
               VARIANTE 2
               $table->foreignId('vaccination_id')->constrained()->onDelete('cascade');
              **/
-           // $table->foreignId('vaccination_id')->references('id')->on('vaccinations')->onDelete('cascade');
-            $table->rememberToken();
+            $table->foreignId('vaccination_id')->nullable()->references('id')->on('vaccinations')->onDelete('cascade');
             $table->timestamps();
         });
 

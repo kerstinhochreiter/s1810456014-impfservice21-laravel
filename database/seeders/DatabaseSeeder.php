@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         //führt dazu dass der Seeder aufgerufen wird mit php artisan db:seed
+        $this->call(LocationsTableSeeder::class);
         $this->call(VaccinationsTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
     }
 }
