@@ -45,7 +45,7 @@ class VaccinationController extends Controller
             if (isset($request['users']) && is_array($request['users'])) {
                 foreach ($request['users'] as $user) {
                     $user = User::firstOrNew(['svnr'=>$user['svnr'],'gender'=>$user['gender'],'firstname'=>$user['firstname'],
-                        'lastname'=>$user['lastname'],'street'=>$user['street'],'number'=>$user['number'],'birth'=>$user['birth'],
+                        'lastname'=>$user['lastname'],'street'=>$user['street'],'number'=>$user['number'], 'u_plz'=>$user['u_plz'], 'u_city'=>$user['u_city'], 'birth'=>$user['birth'],
                         'phonenumber'=>$user['phonenumber'],'email'=>$user['email'],'password'=>$user['password'],'hasvaccination'=>$user['hasvaccination'],'isadmin'=>$user['isadmin'], 'vaccination_id'=>$user['vaccination_id']]);
                     $vaccination->users()->save($user);
                 }
